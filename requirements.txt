@@ -1,0 +1,42 @@
+# =============================================================
+# Multimodal Attendance & Engagement Agent - Dependencies
+# Target Python: 3.10 / 3.11  (MediaPipe 0.10.14 supports 3.9-3.12)
+# Install: pip install -r requirements.txt
+# =============================================================
+
+# ---------- Computer Vision ----------
+# Face detection, landmark-based head pose, multi-person tracking.
+# NOTE: opencv-contrib-python is used instead of opencv-python because
+# MediaPipe already depends on the contrib build; installing both
+# creates two conflicting "cv2" packages.
+opencv-contrib-python==4.10.0.84
+mediapipe==0.10.14
+deep-sort-realtime==1.3.2
+
+# ---------- Audio Processing ----------
+# Feature extraction (RMS energy, ZCR), noise level, speech activity.
+librosa==0.10.2.post1
+soundfile==0.12.1
+
+# ---------- Backend & API ----------
+# REST endpoints, file uploads, live updates over WebSockets.
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+python-multipart==0.0.9
+websockets==12.0
+python-dotenv==1.0.1
+
+# ---------- Data Processing & Storage ----------
+# Session analytics, reports, and local persistence (SQLite).
+# numpy is pinned below 2.0 for MediaPipe 0.10.14 compatibility.
+numpy==1.26.4
+pandas==2.2.2
+sqlalchemy==2.0.32
+
+# ---------- AI Suggestions (optional, cloud) ----------
+# Used only if GROQ_API_KEY is set in .env. The rule-based agent
+# remains the default so the system works fully offline.
+groq==0.11.0
+
+# ---------- Dashboard (optional, Milestone 6.2) ----------
+streamlit==1.38.0
